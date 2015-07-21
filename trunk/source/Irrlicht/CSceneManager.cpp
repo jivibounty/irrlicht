@@ -1661,6 +1661,79 @@ void CSceneManager::drawAll()
 	CurrentRenderPass = ESNRP_NONE;
 }
 
+
+
+//! This method is called just before the rendering process of the whole scene.
+//! draws solid scene nodes
+void CSceneManager::drawSolid()
+{
+	IRR_PROFILE(CProfileScope psAll(EPID_SM_DRAW_ALL);)
+
+	if (!Driver)
+		return;
+
+#ifdef _IRR_SCENEMANAGER_DEBUG
+	// reset attributes
+	Parameters->setAttribute("culled", 0);
+	Parameters->setAttribute("calls", 0);
+	Parameters->setAttribute("drawn_solid", 0);
+#endif
+
+	u32 i; // new ISO for scoping problem in some compilers
+
+	// reset all transforms
+	Driver->setMaterial(video::SMaterial());
+	Driver->setTransform ( video::ETS_PROJECTION, core::IdentityMatrix );
+	Driver->setTransform ( video::ETS_VIEW, core::IdentityMatrix );
+	Driver->setTransform ( video::ETS_WORLD, core::IdentityMatrix );
+	for (i=video::ETS_COUNT-1; i>=video::ETS_TEXTURE_0; --i)
+		Driver->setTransform ( (video::E_TRANSFORMATION_STATE)i, core::IdentityMatrix );
+	// TODO: This should not use an attribute here but a real parameter when necessary (too slow!)
+	Driver->setAllowZWriteOnTransparent(Parameters->getAttributeAsBool(ALLOW_ZWRITE_ON_TRANSPARENT));
+
+	// do animations and other stuff.
+	IRR_PROFILE(getProfiler().start(EPID_SM_ANIMATE));
+	OnAnimate(os::Timer::getTime());
+	IRR_PROFILE(getProfiler().stop(EPID_SM_ANIMATE));
+
+	/*!
+		First Scene Node for prerendering should be the active camera
+		consistent Camera is needed for culling
+	*/
+	IRR_PROFILE(getProfiler().start(EPID_SM_RENDER_CAMERAS));
+	camWorldPos.set(0,0,0);
+	if (ActiveCamera)
+	{
+		ActiveCamera->render();
+		camWorldPos = ActiveCamera->getAbsolutePosition();
+	}
+	IRR_PROFILE(getProfiler().stop(EPID_SM_RENDER_CAMERAS));
+
+	// let all nodes register themselves
+	OnRegisterSceneNode();
+
+	// render default objects
+	{
+		IRR_PROFILE(CProfileScope psDefault(EPID_SM_RENDER_DEFAULT);)
+		CurrentRenderPass = ESNRP_SOLID;
+		Driver->getOverrideMaterial().Enabled = ((Driver->getOverrideMaterial().EnablePasses & CurrentRenderPass) != 0);
+
+		SolidNodeList.sort(); // sort by textures
+
+		for (i=0; i<SolidNodeList.size(); ++i)
+			SolidNodeList[i].Node->render();
+
+#ifdef _IRR_SCENEMANAGER_DEBUG
+		Parameters->setAttribute("drawn_solid", (s32) SolidNodeList.size() );
+#endif
+		SolidNodeList.set_used(0);
+	}
+
+	clearDeletionList();
+
+	CurrentRenderPass = ESNRP_NONE;
+}
+
 void CSceneManager::setLightManager(ILightManager* lightManager)
 {
 	if (lightManager)

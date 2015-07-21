@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Irrlicht", "..\source\Irrlicht\Irrlicht10.0.vcxproj", "{E08E042A-6C45-411B-92BE-3CC31331019F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01.HelloWorld", "01.HelloWorld\HelloWorld_vc10.vcxproj", "{5AD4C95C-BA38-4692-BA4B-8C25A86208F9}"
@@ -145,6 +145,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "25.XmlHandling", "25.XmlHan
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "30.Profiling", "30.Profiling\Profiling_vc10.vcxproj", "{65D9DE2E-B73E-4ADF-96D1-BF4A8B7F4F97}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Advanced", "Advanced\Advanced.vcxproj", "{02036D9B-B9FB-40C6-8459-8E3CAC3A659A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -410,6 +412,12 @@ Global
 		{65D9DE2E-B73E-4ADF-96D1-BF4A8B7F4F97}.Release|Win32.Build.0 = Release|Win32
 		{65D9DE2E-B73E-4ADF-96D1-BF4A8B7F4F97}.Release|x64.ActiveCfg = Release|x64
 		{65D9DE2E-B73E-4ADF-96D1-BF4A8B7F4F97}.Release|x64.Build.0 = Release|x64
+		{02036D9B-B9FB-40C6-8459-8E3CAC3A659A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{02036D9B-B9FB-40C6-8459-8E3CAC3A659A}.Debug|Win32.Build.0 = Debug|Win32
+		{02036D9B-B9FB-40C6-8459-8E3CAC3A659A}.Debug|x64.ActiveCfg = Debug|Win32
+		{02036D9B-B9FB-40C6-8459-8E3CAC3A659A}.Release|Win32.ActiveCfg = Release|Win32
+		{02036D9B-B9FB-40C6-8459-8E3CAC3A659A}.Release|Win32.Build.0 = Release|Win32
+		{02036D9B-B9FB-40C6-8459-8E3CAC3A659A}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

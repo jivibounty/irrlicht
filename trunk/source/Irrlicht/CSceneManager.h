@@ -115,6 +115,9 @@ namespace scene
 		//! draws all scene nodes
 		virtual void drawAll() _IRR_OVERRIDE_;
 
+		//! draws all solid scene nodes
+		virtual void drawSolid() _IRR_OVERRIDE_;
+
 		//! Adds a scene node for rendering using a octree to the scene graph. This a good method for rendering
 		//! scenes with lots of geometry. The Octree is built on the fly from the mesh, much
 		//! faster then a bsp tree.
