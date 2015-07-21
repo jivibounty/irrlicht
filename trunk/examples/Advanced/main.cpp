@@ -168,7 +168,7 @@ int main()
 			// draw scene into render target
 			
 			// set render target texture
-			driver->setRenderTarget(rt, depthRt, true, true, video::SColor(0,0,0,255));
+			driver->setRenderTarget(rt, depthRt, false, true, video::SColor(0,0,0,255));
 
 			// make cube invisible and set fixed camera as active camera
 			test->setVisible(false);

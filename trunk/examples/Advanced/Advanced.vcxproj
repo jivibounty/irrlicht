@@ -81,7 +81,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="CascadedShadowMaps.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Plane.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Box.h" />
+    <ClInclude Include="CascadedShadowMaps.h" />
+    <ClInclude Include="Plane.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
